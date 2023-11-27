@@ -1,21 +1,16 @@
 import './App.css';
 import {Routes, Route, useNavigate} from 'react-router-dom';
+import About from './About';
+import Footer from './Footer';
 import Header from './Header';
 import Home from './Home';
+import Missing from './Missing';
 import Nav from './Nav';
 import NewPost from './NewPost';
 import PostPage from './PostPage';
-import About from './About';
-import Missing from './Missing';
-import Footer from './Footer';
-//import Post from './Post'
-//import PostLayout from './PostLayout';
-import { useState,useEffect } from 'react';
-import { format } from 'date-fns'
-import api from "./api/posts"
+
 import EditPost from './EditPost';
-import useWindowSize from './hooks/useWindowSize';
-import useAxiosFetch from './hooks/useAxiosFetch';
+
 import { DataProvider } from './context/DataContext';
 
 
@@ -27,27 +22,14 @@ function App() {
     <div className="App">
       <DataProvider>
           <Header title="Dhuddu Social Media" />
-          <Nav 
-            search={search} setSearch={setSearch} />
+          <Nav />
           <Routes>
-            <Route path="/" element={
-            <Home posts={searchResults} 
-            fetchError= {fetchError}
-            isLoading={isLoading}
-            />} />
+            <Route path="/" element={<Home  />} />
               <Route path="post" > 
-                <Route index element={<NewPost 
-                  handleSubmit={handleSubmit}
-                  postTitle={postTitle}
-                  setPostTitle={setPostTitle}
-                  postBody={postBody}
-                  setPostBody={setPostBody}
-                  /> } />
-                
-                <Route path=":id" element={<PostPage posts={posts} handleDelete={handleDelete} />} />
+                <Route index element={<NewPost /> } /> 
+                <Route path=":id" element={<PostPage />} />
               </Route>
-              <Route path="/edit/:id" element={<EditPost posts={posts} handleEdit={handleEdit} editBody={editBody} setEditBody={setEditBody} editTitle={editTitle} setEditTitle={setEditTitle} />} />
-
+              <Route path="/edit/:id" element={<EditPost />} />
               <Route path="about" element={<About />} /> 
               <Route path="*" element={<Missing />} />
           </Routes>

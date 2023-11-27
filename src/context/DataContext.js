@@ -1,9 +1,18 @@
 import { createContext, useState, useEffect } from "react";
+import Post from '../Post'
+import PostLayout from '../PostLayout';
+
+import { format } from 'date-fns'
+import api from "../api/posts"
+import EditPost from '../EditPost';
+import useWindowSize from '../hooks/useWindowSize';
+import useAxiosFetch from '../hooks/useAxiosFetch';
+import { useNavigate } from "react-router-dom";
 
 const DataContext = createContext({})
 
 
-export const DataProvider = () => {
+export const DataProvider = ({children}) => {
 
   const [posts, setPosts]= useState([])
   const [search, setSearch]= useState('')
@@ -75,6 +84,11 @@ export const DataProvider = () => {
 
   return(
     <DataContext.Provider value={{
+      width,search, setSearch,
+      searchResults,fetchError, isLoading,
+      handleSubmit,postTitle,setPostTitle,postBody,setPostBody,
+      posts,handleEdit,editBody,setEditBody,editTitle,setEditTitle,
+      handleDelete
 
     }}>
       {children}

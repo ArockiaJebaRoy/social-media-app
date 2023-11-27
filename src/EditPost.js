@@ -1,14 +1,17 @@
+import { useContext } from "react";
 import { useEffect} from "react";
 import { useParams, Link} from "react-router-dom";
+import DataContext from "./context/DataContext";
 //import api from './api/posts';
 //import { format } from 'date-fns';
 //import DataContext from './context/DataContext';
 
-const EditPost = ({posts,handleEdit,editBody,setEditBody,editTitle,setEditTitle}) => {
+const EditPost = () => {
     //const [editTitle, setEditTitle] = useState('');
     //const [editBody, setEditBody] = useState('');
     //const { posts, setPosts } = useContext(DataContext);
    // const history = useHistory();
+   const {posts,handleEdit,editBody,setEditBody,editTitle,setEditTitle}= useContext(DataContext)
     const { id } = useParams();
     const post = posts.find(post => (post.id).toString() === id);
 
